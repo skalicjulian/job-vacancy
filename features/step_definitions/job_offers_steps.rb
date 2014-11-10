@@ -15,6 +15,11 @@ Given(/^I access the new offer page$/) do
   page.should have_content('Title')
 end
 
+Given(/^I access the job offers page$/) do
+  visit '/job_offers/latest'
+  page.should have_content('Current Job Offers')
+end
+
 When(/^I fill the title with "(.*?)"$/) do |offer_title|
   fill_in('job_offer[title]', :with => offer_title)
 end

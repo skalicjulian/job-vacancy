@@ -34,10 +34,14 @@ JobVacancy::App.controllers :job_offers do
   end
 
   post :search do
-    @offers = JobOffer.all(:title.like => "%#{params[:q]}%")
-    render 'job_offers/list'
+  @offers = JobOffer.all(:title.like => "%#{params[:q]}%")
+  if @offers.length<=0
+    flash.now[:error] = "No results available for: #{params[:q]}"
+  else
+    flash.now[:success] = "Total Results: #{@offers.length} for #{params[:q]}"
   end
-
+  render 'job_offers/search'
+  end
 
   post :apply, :with => :offer_id do
     @job_offer = JobOffer.get(params[:offer_id])    
