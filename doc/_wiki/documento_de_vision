@@ -1,0 +1,24 @@
+## Visión
+
+Se entiende que la aplicación resuelve, hoy por hoy, la problemática de ofertar vacantes laborales de manera mínima. Es intencionado, mediante esta serie de iteraciones, incrementar las funcionalidades para incluir los roles y procesos que se encuentran por fuera de la aplicación, y de esta manera poder generar estadísticas que le permitan introducirla en el mercado.
+
+## Alcance Estipulado
+#### (pendientes de definicion)
+
+Mejorar la usabilidad de la aplicacion
+
+Incluir el perfil de Postulante al flujo de la problematica.
+
+Incrementar el nivel de relacion entre Oferente y Postulante mediante un servicio de mensajes hacia las ofertas.
+
+Incrementar la seguridad en el registro de usuarios de la aplicacion mediante el uso de captchas
+
+Lograr que la aplicacion genere informacion en forma de  estadisticas, que permitan vender la aplicacion.
+
+- Cantidad de ofertas con las que opera la aplicacion.
+- Cantidad de postulantes que alberga el sistema.
+- Cantidad de ofertas matcheadas por los postulantes en el sistema.
+- etc.
+
+
+## [VSM](https://drive.draw.io/?#G0BzmjWY3JIKdmOXYyaVZES2MzUWM)
