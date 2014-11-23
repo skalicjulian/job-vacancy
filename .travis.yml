@@ -5,6 +5,8 @@ before_script:
 - "export DISPLAY=:99.0"
 - sh -e /etc/init.d/xvfb start
 - sleep 3
+- PADRINO_ENV=travis bundle exec rake db:migrate
+- sleep 3
 - bundle exec padrino start &
 - sleep 3
 script: PADRINO_ENV=travis bundle exec padrino rake
