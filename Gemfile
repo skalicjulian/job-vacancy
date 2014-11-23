@@ -58,7 +58,6 @@ end
 group :development do
   gem 'guard'   
   gem 'guard-rspec'
-  gem 'debugger'
 end
 
 
