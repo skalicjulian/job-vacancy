@@ -1,4 +1,4 @@
-<h1>Current Job Offers</h1>
+<h1>My Applications</h1>
 <div class="search-box">
 	<form method="POST" action="search" class="form-search">
 		<%= csrf_token_field %>
@@ -15,28 +15,22 @@
 		<th>Actions</th>
 	</tr>
 	
-	<% @offers.each do | offer| %>
-
+	<% @applications.each do | application| %>
+	
 	<tr>
 		<td>
-
-			<%= offer.title %>
-		
+			<%= application.title %>
 		</td>
 		<td>
-		
-			<%= offer.location %>
-		
+			<%= application.location %>
 		</td>
 		<td>
-		
-			<%= offer.description %>
-		
+			<%= application.description %>
 		</td>		
 		<td>
 
-			<%= button_to 'Apply', url_for(:job_offers, :apply, :offer_id => offer.id), :id => "apply_btn", :class => "btn btn-primary" %>
-		
+			<a id="questionbtn" class="btn btn-primary">Send Question</a>
+			
 		</td>		
 	</tr>
 

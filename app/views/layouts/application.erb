@@ -27,15 +27,17 @@
                 <li><%= link_to 'Job offers', url_for(:job_offers, :latest) %></li>
                 
                 <% if signed_in? %>	
-                <li><%= link_to 'New Offer', url_for(:job_offers, :new) %></li>
-                <li><%= link_to 'My Offers', url_for(:job_offers, :my) %></li>
+                  <li><%= link_to 'New Offer', url_for(:job_offers, :new) %></li>
+                  <li><%= link_to 'My Offers', url_for(:job_offers, :my) %></li>
+                  <li><%= link_to 'My Applications', url_for(:job_offers, :applications) %></li>
+								<% end %>
 
-								<% end %>
 								<% if signed_in? %>	
-								<li><%= link_to 'Logout', url_for(:sessions, :destroy) %></li>
+								  <li><%= link_to 'Logout', url_for(:sessions, :destroy) %></li>
 								<% else%>	
-								<li><%= link_to 'Login', url_for(:sessions, :login) %></li>
+								  <li><%= link_to 'Login', url_for(:sessions, :login) %></li>
 								<% end %>
+
               </ul>
             </div>
           </div>
@@ -58,6 +60,7 @@
 
     </div> 
 
-		<%= javascript_include_tag '/assets/application' %> 
+		<%= javascript_include_tag '/assets/application' %>
+    
 		</body>
 </html>

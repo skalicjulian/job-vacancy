@@ -1,9 +1,9 @@
 require File.expand_path(File.dirname(__FILE__) + "/../../config/boot")
 
-require 'capybara/cucumber'
 require 'rspec/expectations'
+require 'watir-webdriver'
+require 'headless'
 
-#require 'simplecov'
 require 'simplecov'
 SimpleCov.start do
   root(File.join(File.dirname(__FILE__), '..','..'))
@@ -21,8 +21,18 @@ end
 
 DataMapper.auto_migrate!
 user = User.create(:email => 'offerer@test.com',
-									 :name => 'Offerer', 
-									 :password => "Passw0rd!") unless User.all.count > 0
+                   :name => 'Offerer', 
+                   :password => "Passw0rd!") unless User.all.count > 0
 
-#Capybara.default_driver = :selenium
-Capybara.app = JobVacancy::App.tap { |app|  }
+
+
+headless = Headless.new
+headless.start
+
+Before do |scenario|
+    @browser = Watir::Browser.new
+end
+
+at_exit do
+  headless.destroy
+end

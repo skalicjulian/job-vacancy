@@ -1,15 +1,16 @@
 class JobOffer
 	include DataMapper::Resource
 
-	# property <name>, <type>
 	property :id, Serial
 	property :title, String
 	property :location, String
 	property :description, String
-  property :created_on, Date
-  property :updated_on, Date
-  property :is_active, Boolean, :default => true
+  	property :created_on, Date
+  	property :updated_on, Date
+  	property :is_active, Boolean, :default => true
+	
 	belongs_to :user
+	has n, :job_applications
 
 	validates_presence_of :title
 

@@ -1,63 +1,59 @@
 When(/^I browse the default page$/) do
-  visit '/'
-end
-
-Given(/^I am logged in as job offerer$/) do
-  visit '/login'
-  fill_in('user[email]', :with => 'offerer@test.com')
-  fill_in('user[password]', :with => 'Passw0rd!')
-  click_button('Login')
-  page.should have_content('offerer@test.com')
+  @browser.goto("http://127.0.0.1:3000/")
 end
 
 Given(/^I access the new offer page$/) do
-  visit '/job_offers/new'
-  page.should have_content('Title')
+  @browser.goto("http://127.0.0.1:3000/job_offers/new")
+  @browser.text.include?("Title:").should == true
 end
 
 Given(/^I access the job offers page$/) do
-  visit '/job_offers/latest'
-  page.should have_content('Current Job Offers')
+  @browser.goto("http://127.0.0.1:3000/job_offers/latest")
+  @browser.text.include? "Current Job Offers"
 end
 
 When(/^I fill the title with "(.*?)"$/) do |offer_title|
-  fill_in('job_offer[title]', :with => offer_title)
+  @browser.text_field(id: "job_offer_title").set offer_title
 end
 
 When(/^confirm the new offer$/) do
-  click_button('Create')
+  @browser.button(value: "Create").click
 end
 
-Then(/^I should see "(.*?)" in My Offers$/) do |content|
-	visit '/job_offers/my'
-  page.should have_content(content)
+Then(/^I should see "(.*?)" in My Offers$/) do |offer_title|
+  @browser.goto("http://127.0.0.1:3000/job_offers/my")
+  @browser.text.include?(offer_title).should == true
 end
 
 
-Then(/^I should not see "(.*?)" in My Offers$/) do |content|
-  visit '/job_offers/my'
-  page.should_not have_content(content)
+Then(/^I should not see "(.*?)" in My Offers$/) do |offer_title|
+  @browser.goto("http://127.0.0.1:3000/job_offers/my")
+  not @browser.text.include? offer_title
 end
 
 Given(/^I have "(.*?)" offer in My Offers$/) do |offer_title|
-  JobOffer.all.destroy
-  visit '/job_offers/new'
-  fill_in('job_offer[title]', :with => offer_title)
-  click_button('Create')
+  step 'there is no job offers at all'
+  @browser.goto("http://127.0.0.1:3000/job_offers/new")
+  @browser.text_field(id: "job_offer_title").set offer_title
+  @browser.button(value: "Create").click
 end
 
 Given(/^I edit it$/) do
-  click_link('Edit')
+  @browser.link(text: "Edit").click
 end
 
 And(/^I delete it$/) do
-  click_button('Delete')
+  @browser.button(title: "Delete offer").click
 end
 
 Given(/^I set title to "(.*?)"$/) do |new_title|
-  fill_in('job_offer[title]', :with => new_title)
+  @browser.text_field(id: "job_offer_title").set new_title
 end
 
 Given(/^I save the modification$/) do
-  click_button('Save')
+  @browser.button(value: "Save").click
+end
+
+Then(/^I should see "(.*?)"$/) do |alert_message|
+  @browser.text.include? alert_message
 end

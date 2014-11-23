@@ -5,7 +5,7 @@ Feature: As an Applicant I want to perform consecutive searchs by different crit
   Get to the results page
   And be capable to make a new search with a different criteria
   
-  Background
+  Background:
     Given I access the job offers page
 
   Scenario: Search for a Programmer Job Offer

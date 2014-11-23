@@ -1,29 +1,47 @@
-Given(/^only a "(.*?)" offer exists in the offers list$/) do | job_title |
-  @job_offer = JobOffer.new
-  @job_offer.owner = User.first
-  @job_offer.title = job_title
-  @job_offer.location = 'a nice job'
-  @job_offer.description = 'a nice job'
-  @job_offer.save
+Given(/^Given an applicant user registered$/) do
+  @browser.goto("http://127.0.0.1:3000/register") 
+  @browser.text_field(id: 'user_name').set "Applicant"
+  @browser.text_field(id: 'user_email').set "applicant@test.com"
+  @browser.text_field(id: "user_password").set "Passw0rd!"
+  @browser.text_field(id: "user_password_confirmation").set "Passw0rd!"
+  @browser.button(value: "Create").click
 end
 
-Given(/^I access the offers list page$/) do
-  visit '/job_offers'
+Given(/^I am logged in as applicant$/) do
+  step 'Given an applicant user registered'
+  @browser.goto("http://127.0.0.1:3000/")
+  @browser.link(:text => "Login").click
+  @browser.text_field(id: "user_email").set "applicant@test.com"
+  @browser.text_field(id: "user_password").set "Passw0rd!"
+  @browser.button(value: "Login").click
 end
 
-When(/^I apply$/) do
-  click_link 'Apply'
-  fill_in('job_application[applicant_email]', :with => 'applicant@test.com')
-  click_button('Apply')
+Given(/^I am at Current Job Offers page$/) do 
+  @browser.goto("http://127.0.0.1:3000/")
+  @browser.button :value => 'Job Offers'
 end
 
-Then(/^I should receive a mail with offerer info$/) do
-  mail_store = "#{Padrino.root}/tmp/emails"
-  file = File.open("#{mail_store}/applicant@test.com", "r")
-  content = file.read
-  content.include?(@job_offer.title).should be true
-  content.include?(@job_offer.location).should be true
-  content.include?(@job_offer.description).should be true
-  content.include?(@job_offer.owner.email).should be true
-  content.include?(@job_offer.owner.name).should be true
+When(/^I apply for a "(.*?)" job offer$/) do |offer_title|
+  if @browser.table.exists?
+    @browser.table.trs.each do |tr|
+      if tr.td(:index => 0).text.include? offer_title
+        tr.td(:index => 3).link.click
+      end
+    end
+  end
+end
+
+Then(/^I should see You have applied for: "(.*?)"$/) do |offer_title|
+  @browser.divs(:class => "alert alert-success fade in").each do |div|
+    div.text.include? "You have applied for: " + offer_title
+  end
+end
+
+When(/^I browse to My Applications$/) do 
+  @browser.goto("http://127.0.0.1:3000")
+  @browser.button :value => 'My Applications'
+end
+
+Then(/^It should list "(.*?)"$/) do |offer_title|
+  @browser.text.include? offer_title
 end
