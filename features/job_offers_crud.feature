@@ -4,7 +4,7 @@ Feature: Job Offers CRUD
   I want to manage my offers
 
   Background:
-  	Given I am logged in as job offerer
+  	Given I am logged in as an offerer
 
   Scenario: Create new offer
     Given I access the new offer page

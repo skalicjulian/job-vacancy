@@ -43,9 +43,12 @@ end
 gem 'padrino', '0.11.2'
 
 group :development, :test do
+  gem 'debugger'
   gem 'dm-sqlite-adapter'
   gem 'cucumber'
   gem 'capybara'
+  gem 'watir-webdriver'	
+  gem 'headless'
   gem 'rspec_junit_formatter'
   gem 'rspec'
   gem 'simplecov', "0.8.0.pre"

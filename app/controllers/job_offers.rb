@@ -20,6 +20,12 @@ JobVacancy::App.controllers :job_offers do
     render 'job_offers/list'
   end
 
+  get :applications do
+    user= User.get(session[:current_user])
+    @applications = JobApplication.all(:user=> user)
+    render 'applicants/applications'
+  end
+  
   get :edit, :with =>:offer_id  do
     @job_offer = JobOffer.get(params[:offer_id])
     # ToDo: validate the current user is the owner of the offer
@@ -27,10 +33,19 @@ JobVacancy::App.controllers :job_offers do
   end
 
   get :apply, :with =>:offer_id  do
-    @job_offer = JobOffer.get(params[:offer_id])
-    @job_application = JobApplication.new
-    # ToDo: validate the current user is the owner of the offer
-    render 'job_offers/apply'
+    @job_offer = JobOffer.get(params[:offer_id])    
+    @user= User.get(session[:current_user])
+    @job_application = JobApplication.create_for(@job_offer, @user)
+    redirect '/job_offers'
+  end
+
+  post :apply, :with => :offer_id do
+    @job_offer = JobOffer.get(params[:offer_id])    
+    @user= User.get(session[:current_user])
+    @job_application = JobApplication.create_for(@job_offer, @user)
+    @job_application.save
+    flash[:success] = "You have applied for: #{@job_offer.title}"
+    redirect '/job_offers'
   end
 
   post :search do
@@ -41,15 +56,6 @@ JobVacancy::App.controllers :job_offers do
     flash.now[:success] = "Total Results: #{@offers.length} for #{params[:q]}"
   end
   render 'job_offers/search'
-  end
-
-  post :apply, :with => :offer_id do
-    @job_offer = JobOffer.get(params[:offer_id])    
-    applicant_email = params[:job_application][:applicant_email]
-    @job_application = JobApplication.create_for(applicant_email, @job_offer)
-    @job_application.process
-    flash[:success] = 'Contact information sent.'
-    redirect '/job_offers'
   end
 
   post :create do

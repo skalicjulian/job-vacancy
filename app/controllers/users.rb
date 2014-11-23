@@ -24,6 +24,11 @@ JobVacancy::App.controllers :users do
     render 'users/new'
   end
 
+  get :latest do
+    @offers = JobOffer.all_active
+    render 'users/list'
+  end
+
   post :create do
       password_confirmation = params[:user][:password_confirmation]
       params[:user].reject!{|k,v| k == 'password_confirmation'}

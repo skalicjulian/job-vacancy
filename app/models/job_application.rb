@@ -1,17 +1,28 @@
 class JobApplication
+	include DataMapper::Resource
 
-	attr_accessor :applicant_email
-	attr_accessor :job_offer
+	property :id, Serial 
+	
+	belongs_to :job_offer
+	belongs_to :user 
 
-	def self.create_for(email, offer)
+	def self.create_for(offer, user)
 		app = JobApplication.new
-		app.applicant_email = email
-		app.job_offer = offer
+		app.job_offer= offer
+		app.user= user
 		app
 	end
 
-	def process
-    JobVacancy::App.deliver(:notification, :contact_info_email, self)
-  end
+	def title
+		job_offer.title
+	end
+
+	def location
+		job_offer.location
+	end
+
+	def description
+		job_offer.description
+	end
 
 end

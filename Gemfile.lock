@@ -33,6 +33,8 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    childprocess (0.5.5)
+      ffi (~> 1.0, >= 1.0.11)
     clockwork (0.5.4)
       activesupport
       tzinfo (~> 0.3.35)
@@ -109,6 +111,7 @@ GEM
     guard-rspec (3.0.2)
       guard (>= 1.8)
       rspec (~> 2.13)
+    headless (1.0.2)
     hike (1.2.3)
     http_router (0.11.0)
       rack (>= 1.0.0)
@@ -199,6 +202,12 @@ GEM
       builder
       rspec (~> 2.0)
       rspec-core (!= 2.12.0)
+    rubyzip (1.1.6)
+    selenium-webdriver (2.44.0)
+      childprocess (~> 0.5)
+      multi_json (~> 1.0)
+      rubyzip (~> 1.0)
+      websocket (~> 1.0)
     simple_oauth (0.2.0)
     simplecov (0.8.0.pre)
       multi_json
@@ -244,6 +253,9 @@ GEM
     url_mount (0.2.1)
       rack
     uuidtools (2.1.4)
+    watir-webdriver (0.6.11)
+      selenium-webdriver (>= 2.18.0)
+    websocket (1.2.1)
     xpath (2.0.0)
       nokogiri (~> 1.3)
     yui-compressor (0.9.6)
@@ -271,6 +283,7 @@ DEPENDENCIES
   erubis (~> 2.7.0)
   guard
   guard-rspec
+  headless
   json
   padrino (= 0.11.2)
   padrino-sprockets
@@ -285,4 +298,5 @@ DEPENDENCIES
   thin
   twitter
   uglifier (= 2.1.1)
+  watir-webdriver
   yui-compressor (= 0.9.6)

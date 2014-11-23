@@ -1,12 +1,16 @@
-Feature: Job Application
+Feature: As an Applicant I want apply for a job
   In order to get a job
-  As a candidate
-  I want to apply to an offer
+  I would like to apply for a desired job offer
+  And know the application was succesfull
+  The job application should be visible from My Applications page (no por el momento)
 
   Background:
-  	Given only a "Web Programmer" offer exists in the offers list
+    Given I am logged in as applicant
+    Given a "Web Programmer" job offer
+    Given I am at Current Job Offers page
 
-  Scenario: Apply to job offer
-    Given I access the offers list page
-    When I apply
-    Then I should receive a mail with offerer info
+  Scenario: Apply for a job from Current Job Offers page
+    When I apply for a "Web Programmer" job offer
+    Then I should see You have applied for: "Web Programmer"
+    When I browse to My Applications
+    Then It should list "Web Programmer"
