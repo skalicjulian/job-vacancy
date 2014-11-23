@@ -58,7 +58,7 @@ JobVacancy::App.controllers :job_offers do
     else
       flash.now[:success] = "Total Results: #{@offers.length} for #{params[:q]}"
     end
-    render 'job_offers/search'
+    render 'job_offers/list'
   end
 
   post :apply, :with => :offer_id do
