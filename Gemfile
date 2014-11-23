@@ -43,7 +43,6 @@ end
 gem 'padrino', '0.11.2'
 
 group :development, :test do
-  gem 'debugger'
   gem 'dm-sqlite-adapter'
   gem 'cucumber'
   gem 'capybara'
