@@ -21,7 +21,7 @@ class User
   validates_presence_of :crypted_password
   
 
-  def password=(password)
+  def password= (password)
     self.crypted_password = ::BCrypt::Password.create(password) unless password.nil?	
   end
 
@@ -47,6 +47,7 @@ class User
   def self.new_applicant
     applicant = User.new
     applicant.role = APPLICANT
+    applicant
   end
 
   def self.generate_applicant(params)
@@ -58,6 +59,7 @@ class User
   def self.new_offerer
     offerer = User.new
     offerer.role = OFFERER
+    offerer
   end
 
   def self.generate_offerer(params)

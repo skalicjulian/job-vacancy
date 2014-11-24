@@ -109,4 +109,14 @@ JobVacancy::App.controllers :users do
       end
   end
 
+  get :profile_app, :map => '/profile_app' do
+    @user = session[:current_user]
+    render 'users/profile_applicant'
+  end
+
+  get :profile_off, :map => '/profile_off' do
+    @user = session[:current_user]
+    render 'users/profile_offerer'
+  end
+
 end

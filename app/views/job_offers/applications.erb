@@ -15,22 +15,30 @@
 		<th>Actions</th>
 	</tr>
 	
-	<% @applications.each do | application| %>
+	<% @applications.each do |application| %>
 	
 	<tr>
 		<td>
+
 			<%= application.title %>
+
 		</td>
 		<td>
+
 			<%= application.location %>
+
 		</td>
 		<td>
+
 			<%= application.description %>
+
 		</td>		
 		<td>
 
 			<a id="questionbtn" class="btn btn-primary">Send Question</a>
-			
+
+			<a id="cancel_btn" class="btn btn-secondary">Cancel Application</a>
+
 		</td>		
 	</tr>
 

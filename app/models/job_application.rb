@@ -25,4 +25,13 @@ class JobApplication
 		job_offer.description
 	end
 
+	def applicant_name
+		user.name
+	end
+
+	def applicant_email
+		user.email
+	end
+
+
 end

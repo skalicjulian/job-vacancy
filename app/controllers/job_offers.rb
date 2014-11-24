@@ -20,6 +20,12 @@ JobVacancy::App.controllers :job_offers do
     render 'job_offers/list'
   end
 
+  get :applicants, :with => :offer_id do
+    user = User.get(session[:current_user])
+    @applications = JobApplication.all(:job_offer_id => :offer_id)
+    render 'job_offers/applicants'
+  end
+
   get :applications do
     user= User.get(session[:current_user])
     @applications = JobApplication.all(:user => user)

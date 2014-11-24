@@ -24,6 +24,10 @@
 			<%= offer.is_active %>
 		</td>		
 
+		
+		<td>
+			<%= link_to 'View Applicants', url_for(:job_offers, :applicants, :offer_id => offer.id), :class => "btn btn-success" %>
+		</td>
 		<td>
 			<%= link_to 'Edit', url_for(:job_offers, :edit, :offer_id => offer.id), :class => "btn btn-primary" %>
 			<%- form_tag url(:job_offers, :destroy, :offer_id => offer.id), :method => :delete, :style => 'display:inline' do %>
