@@ -1,7 +1,8 @@
 HOME_PAGE = 'http://localhost:3000'
 
 LOGIN_PAGE = 'http://localhost:3000/login'
-REGISTRATION_PAGE = 'http://localhost:3000/register'
+OFFERER_REGISTRATION_PAGE = 'http://localhost:3000/register_off'
+APPLICANT_REGISTRATION_PAGE = 'http://localhost:3000/register_app'
 
 JOB_OFFERS_PAGE = 'http://localhost:3000/job_offers'
 JOB_OFFER_CREATE_PAGE = 'http://localhost:3000/job_offers/new'

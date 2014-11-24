@@ -13,15 +13,15 @@ class JobApplication
 		app
 	end
 
-	def title
+	def offer_title
 		job_offer.title
 	end
 
-	def location
+	def offer_location
 		job_offer.location
 	end
 
-	def description
+	def offer_description
 		job_offer.description
 	end
 

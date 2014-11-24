@@ -15,13 +15,13 @@ JobVacancy::App.controllers :sessions do
       render 'sessions/new'
     else
       sign_in @user
-      redirect '/'          
+      redirect '/'
     end
   end
 
   get :destroy, :map => '/logout' do 
     sign_out
-    redirect '/'          
+    redirect '/'
   end
 
 end

@@ -1,15 +1,11 @@
 When(/^I browse the default page$/) do
   @browser.goto(HOME_PAGE)
   expect(@browser.url).to match Regexp.new(HOME_PAGE)
-  print (@browser.url + "\n")
-
 end
 
 Given(/^I access the new offer page$/) do
   @browser.goto(JOB_OFFER_CREATE_PAGE)
   expect(@browser.url).to match Regexp.new(JOB_OFFER_CREATE_PAGE)
-
-  print (@browser.url + "\n")
 
   expect(@browser.text.include? 'New Job Offer').to eq true
 
@@ -22,8 +18,7 @@ Given(/^I access the job offers page$/) do
   @browser.goto(ALL_JOB_OFFERS_PAGE)
   #browsing validation
   expect(@browser.url).to match Regexp.new(ALL_JOB_OFFERS_PAGE)
-  print (@browser.url + "\n")
-
+  
   #header validation
   expect(@browser.text.include? 'Current Job Offers').to eq true
 end
@@ -44,8 +39,7 @@ Then(/^I should see "(.*?)" in My Offers$/) do |offer_title|
   @browser.goto(MY_JOB_OFFERS_PAGE)
   #browsing validation
   expect(@browser.url).to match Regexp.new(MY_JOB_OFFERS_PAGE)
-  print (@browser.url + "\n")
-
+  
   #content validation
   expect(@browser.text.include? offer_title).to eq true
 end
@@ -54,8 +48,7 @@ Then(/^I should not see "(.*?)" in My Offers$/) do |offer_title|
   @browser.goto(MY_JOB_OFFERS_PAGE)
   #browsing validation
   expect(@browser.url).to match Regexp.new(MY_JOB_OFFERS_PAGE)
-  print (@browser.url + "\n")
-
+  
   #content validation
   expect(@browser.text.include? offer_title).to eq false
 end
@@ -67,7 +60,6 @@ Given(/^I have "(.*?)" offer in My Offers$/) do |offer_title|
   @browser.goto(JOB_OFFER_CREATE_PAGE)
   expect(@browser.url).to match Regexp.new(JOB_OFFER_CREATE_PAGE)
 
-  print (@browser.url + "\n")
   expect(@browser.text.include? 'New Job Offer').to eq true
   expect(@browser.text_field(id: "job_offer_title").present?).to eq true
   @browser.text_field(id: "job_offer_title").set offer_title

@@ -6,8 +6,6 @@ Given(/^I am logged in as an offerer$/) do
   @browser.goto(LOGIN_PAGE)
   expect(@browser.url).to match Regexp.new(LOGIN_PAGE)
   
-  print (@browser.url + "\n")
-  
   expect(@browser.text.include? 'Login').to eq true
   expect(@browser.text_field(id: "user_email").present?).to eq true
   expect(@browser.text_field(id: "user_password").present?).to eq true
@@ -20,8 +18,6 @@ end
 Given(/^a "(.*?)" job offer$/) do |offer_title|
   @browser.goto(JOB_OFFER_CREATE_PAGE)
   expect(@browser.url).to match Regexp.new(JOB_OFFER_CREATE_PAGE)
-  
-  print (@browser.url + "\n")
  
   expect(@browser.text.include? 'New Job Offer').to eq true
   @browser.text_field(id: "job_offer_title").set offer_title
@@ -31,8 +27,6 @@ end
 When(/^I search for "(.*?)" job offer$/) do |offer_title|
   @browser.goto(ALL_JOB_OFFERS_PAGE)
   expect(@browser.url).to match Regexp.new(ALL_JOB_OFFERS_PAGE)
-  
-  print (@browser.url + "\n")
 
   expect(@browser.text.include? 'Current Job Offers').to eq true
   expect(@browser.text_field(id: "text-field").present?).to eq true

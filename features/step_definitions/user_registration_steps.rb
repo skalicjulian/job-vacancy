@@ -5,7 +5,7 @@ Given(/^I am at the home page$/) do
 end
 
 Given(/^a user already registered with email "(.*?)"$/) do |email|
-  step 'I should see the registration page'
+  step 'I should see the offerer registration page'
   step 'the registration form should be empty'
   @browser.text_field(:id => 'user_name').set 'Marcelo'
   @browser.text_field(:id => 'user_email').set email
@@ -15,9 +15,19 @@ Given(/^a user already registered with email "(.*?)"$/) do |email|
   @browser.button(:value => 'Create').click
 end
 
-Then(/^I should see the registration page$/) do
-  @browser.goto(REGISTRATION_PAGE)
-  expect(@browser.url).to match Regexp.new(REGISTRATION_PAGE)
+Then(/^I should see the offerer registration page$/) do
+  @browser.goto(OFFERER_REGISTRATION_PAGE)
+  expect(@browser.url).to match Regexp.new(OFFERER_REGISTRATION_PAGE)
+
+  expect(@browser.text_field(:id => 'user_name').present?).to eq true
+  expect(@browser.text_field(:id => 'user_email').present?).to eq true
+  expect(@browser.text_field(:id => 'user_password').present?).to eq true
+  expect(@browser.text_field(:id => 'user_password_confirmation').present?).to eq true
+end
+
+Then(/^I should see the applicant registration page$/) do
+  @browser.goto(APPLICANT_REGISTRATION_PAGE)
+  expect(@browser.url).to match Regexp.new(APPLICANT_REGISTRATION_PAGE)
 
   expect(@browser.text_field(:id => 'user_name').present?).to eq true
   expect(@browser.text_field(:id => 'user_email').present?).to eq true
@@ -69,9 +79,4 @@ end
 When(/^I click on "(.*?)" link$/) do |link_label|
   expect(@browser.link(:text => link_label).present?).to eq true
   @browser.link(:text => link_label).click
-end
-
-Then(/^I should see "(.*?)"​$/) do |message|
-  expect(@browser.div(class: "alert alert-success fade in").present?).to eq true
-  expect(@browser.text.include? message).to eq true
 end

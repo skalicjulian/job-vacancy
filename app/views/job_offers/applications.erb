@@ -1,11 +1,4 @@
 <h1>My Applications</h1>
-<div class="search-box">
-	<form method="POST" action="search" class="form-search">
-		<%= csrf_token_field %>
-		<input type="text" name="q" id="text-field"/>
-		<input type="submit" value="search" id="search-button" class="btn btn-primary"/>
-	</form>
-</div>
 
 <table class="table table-bordered">
 	<tr>
@@ -20,17 +13,17 @@
 	<tr>
 		<td>
 
-			<%= application.title %>
+			<%= application.offer_title %>
 
 		</td>
 		<td>
 
-			<%= application.location %>
+			<%= application.offer_location %>
 
 		</td>
 		<td>
 
-			<%= application.description %>
+			<%= application.offer_description %>
 
 		</td>		
 		<td>

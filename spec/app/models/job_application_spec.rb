@@ -32,9 +32,9 @@ describe JobApplication do
 	before(:each) do
 	  	@job_offer = double
 	  	allow(@job_offer).to receive(:id)
-	  	allow(@job_offer).to receive(:title).and_return("Programmer")
-	  	allow(@job_offer).to receive(:description).and_return("Good job!")
-	  	allow(@job_offer).to receive(:location).and_return("Buenos Aires")
+	  	allow(@job_offer).to receive(:offer_title).and_return("Programmer")
+	  	allow(@job_offer).to receive(:offer_description).and_return("Good job!")
+	  	allow(@job_offer).to receive(:offer_location).and_return("Buenos Aires")
 	end
 
 	describe 'title' do
@@ -42,19 +42,19 @@ describe JobApplication do
 		it 'should get job_offer title' do
 	  	user = User.new
 	  	ja = JobApplication.create_for(@job_offer, user)
-	  	expect(ja.title).to eq("Programmer")
+	  	expect(ja.offer_title).to eq("Programmer")
 	  end
 
 	  it 'should get job_offer location' do
 	  	user = User.new
 	  	ja = JobApplication.create_for(@job_offer, user)
-	  	expect(ja.location).to eq("Buenos Aires")
+	  	expect(ja.offer_location).to eq("Buenos Aires")
 	  end
 
 	  it 'should get job_offer description' do
 	  	user = User.new
 	  	ja = JobApplication.create_for(@job_offer, user)
-	  	expect(ja.description).to eq("Good job!")
+	  	expect(ja.offer_description).to eq("Good job!")
 	  end
 	end
 

@@ -1,0 +1,13 @@
++En heroku.com creamos una cuenta
+
++Una vez creada la cuenta, entramos en nuestra sesion, vamos a la opción "Personal Apps", hacemos click en el boton de agregar app (es el boton +). Insertamos un nombre diferente al de nuestras aplicaciones ya creadas, si es que tenemos alguna, y le damos click al boton "Create App"
+
++Entramos en nuestra nueva app, hacemos click en la opción "Get more addons..." para agregar
+nuestra base de datos. Buscamos la opción "Heroku Postgres", ya que es gratuita, hacemos click en ella, luego asociamos esta BD a nuestra aplicación buscando en nuestro menu desplegable el nombre de nuestra aplicación, damos click en "Add Hobby Dev for free" y listo.
+
++Entramos en https://toolbelt.heroku.com/ para instalar el toolbetl de heroku y seguimos los pasos detallados alli segun el sistema operativo que usemos
+
++Para configurar la base de datos de nuestra aplicación empezamos configurando las variables de ambiente, en nuestro caso vamos a hacerlo en Ubuntu desde la consola. Allí ponemos el comando "heroku config --app <nombre de nuestra aplicación>". Al ejecutar aquel comando nos muestra las variables de ambiente que ya tenemos.
+En el archivo de configuración de la base de datos de nuestra aplicación local (/job-vacancy/config) database.rb, nos muestra que tanto en staging como en productión el conection string es DATABASE_URL, desde la consola seteamos esa variable de ambiente con este comando: "heroku config:add DATABASE_URL=<url de la base de datos de Heroku Postgres>". Chequeamos que esa variable se seteo correctamente con el comando: "heroku config --app <nombre de nuesta aplicación>" y deberia aparecernos como resultado el conection string DATABASE_URL con la asignación de la url de la base de datos Heroku Postgres
+
++Luego de todos estos pasos, si la aplicación no esta corriendo correctamente puede que sea por no estar inicializada nuestra base de datos, para esto, sólo para probar que la aplicacion puede correr, podemos correr el comando:"heroku run padrino console --app <nombre de nuesta aplicación" que nos permite logearnos dentro de la aplicacion para así crear un usuario.
