@@ -6,6 +6,12 @@ Feature: Job Offers CRUD
   Background:
   	Given I am logged in as an offerer
 
+  Scenario: Delete offer
+    Given I have "Java Programmer" offer in My Offers
+    Given I delete it
+    Then I should see "Offer deleted"
+    And I should not see "Java Programmer" in My Offers
+
   Scenario: Create new offer
     Given I access the new offer page
     When I fill the title with "Java Programmer"
@@ -21,8 +27,4 @@ Feature: Job Offers CRUD
     Then I should see "Offer updated"
     And I should see "Senior Java Programmer" in My Offers
 
-  Scenario: Delete offer
-    Given I have "Java Programmer" offer in My Offers
-    Given I delete it
-    Then I should see "Offer deleted"
-    And I should not see "Java Programmer" in My Offers
+  

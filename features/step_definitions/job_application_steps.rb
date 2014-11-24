@@ -1,34 +1,46 @@
 Given(/^Given an applicant user registered$/) do
-  @browser.goto("http://127.0.0.1:3000/register") 
+  @browser.goto(REGISTRATION_PAGE) 
+  expect(@browser.url).to match Regexp.new(REGISTRATION_PAGE)
+
+  expect(@browser.text.include? 'Registration').to eq true
+
+  expect(@browser.text_field(id: "user_name").present?).to eq true
+  expect(@browser.text_field(id: "user_email").present?).to eq true
+  expect(@browser.text_field(id: "user_password").present?).to eq true
+  expect(@browser.text_field(id: "user_password_confirmation").present?).to eq true
+
   @browser.text_field(id: 'user_name').set "Applicant"
   @browser.text_field(id: 'user_email').set "applicant@test.com"
   @browser.text_field(id: "user_password").set "Passw0rd!"
   @browser.text_field(id: "user_password_confirmation").set "Passw0rd!"
+
+  expect(@browser.button(value: "Create").present?).to eq true
   @browser.button(value: "Create").click
 end
 
 Given(/^I am logged in as applicant$/) do
   step 'Given an applicant user registered'
-  @browser.goto("http://127.0.0.1:3000/")
-  @browser.link(:text => "Login").click
+  @browser.goto(LOGIN_PAGE)
+  expect(@browser.url).to match Regexp.new(LOGIN_PAGE)
+
+  expect(@browser.text_field(id: "user_email").present?).to eq true
+  expect(@browser.text_field(id: "user_password").present?).to eq true
   @browser.text_field(id: "user_email").set "applicant@test.com"
   @browser.text_field(id: "user_password").set "Passw0rd!"
+
+  expect(@browser.button(value: "Login").present?).to eq true
   @browser.button(value: "Login").click
 end
 
 Given(/^I am at Current Job Offers page$/) do 
-  @browser.goto("http://127.0.0.1:3000/")
-  @browser.button :value => 'Job Offers'
+  @browser.goto(JOB_OFFERS_PAGE)
+  expect(@browser.url).to match Regexp.new(JOB_OFFERS_PAGE)
+
+  expect(@browser.text.include? 'Current Job Offers').to eq true
 end
 
 When(/^I apply for a "(.*?)" job offer$/) do |offer_title|
-  if @browser.table.exists?
-    @browser.table.trs.each do |tr|
-      if tr.td(:index => 0).text.include? offer_title
-        tr.td(:index => 3).link.click
-      end
-    end
-  end
+  @browser.button(value: "Apply").click
 end
 
 Then(/^I should see You have applied for: "(.*?)"$/) do |offer_title|
@@ -38,7 +50,8 @@ Then(/^I should see You have applied for: "(.*?)"$/) do |offer_title|
 end
 
 When(/^I browse to My Applications$/) do 
-  @browser.goto("http://127.0.0.1:3000")
+  @browser.goto(HOME_PAGE)
+  expect(@browser.url).to match Regexp.new(HOME_PAGE)
   @browser.button :value => 'My Applications'
 end
 

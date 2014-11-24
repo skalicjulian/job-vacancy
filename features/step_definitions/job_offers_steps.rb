@@ -1,7 +1,6 @@
 When(/^I browse the default page$/) do
   @browser.goto(HOME_PAGE)
   expect(@browser.url).to match Regexp.new(HOME_PAGE)
-
   print (@browser.url + "\n")
 
 end
@@ -67,11 +66,12 @@ Given(/^I have "(.*?)" offer in My Offers$/) do |offer_title|
   #create a offer with offer_title
   @browser.goto(JOB_OFFER_CREATE_PAGE)
   expect(@browser.url).to match Regexp.new(JOB_OFFER_CREATE_PAGE)
-  
+
   print (@browser.url + "\n")
- 
   expect(@browser.text.include? 'New Job Offer').to eq true
+  expect(@browser.text_field(id: "job_offer_title").present?).to eq true
   @browser.text_field(id: "job_offer_title").set offer_title
+  expect(@browser.button(value: "Create").present?).to eq true
   @browser.button(value: "Create").click
   #content validation
   expect(@browser.text.include? offer_title).to eq true
@@ -109,6 +109,5 @@ end
 
 Then(/^I should see "(.*?)"$/) do |alert_message|
   #flash alert validation
-  expect(@browser.div(class: "alert alert-success fade in").present?).to eq true
   expect(@browser.text.include? alert_message).to eq true
 end
