@@ -17,6 +17,7 @@ PadrinoTasks.use(:datamapper)
 PadrinoTasks.init
 
 if ['development', 'test', 'travis'].include?(PADRINO_ENV)
+  puts "PADRINO_ENV: #{PADRINO_ENV}"
 
 	task :all do
   ["rake spec", "rake cucumber"].each do |cmd|
@@ -37,7 +38,7 @@ if ['development', 'test', 'travis'].include?(PADRINO_ENV)
   require 'cucumber/rake/task'
 	Cucumber::Rake::Task.new(:cucumber) do |task|
   	Rake::Task['db:migrate'].invoke
-  	Rake::Task['db:seed'].invoke
+  	# Rake::Task['db:seed'].invoke
   	task.cucumber_opts = ["features"]
 	end
 

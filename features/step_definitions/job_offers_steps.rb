@@ -3,12 +3,12 @@ When(/^I browse the default page$/) do
 end
 
 Given(/^I access the new offer page$/) do
-  @browser.goto("http://127.0.0.1:3000/job_offers/new")
+  @browser.goto(JOB_OFFER_CREATE_PAGE)
   @browser.text.include?("Title:").should == true
 end
 
 Given(/^I access the job offers page$/) do
-  @browser.goto("http://127.0.0.1:3000/job_offers/latest")
+  @browser.goto(ALL_JOB_OFFERS_PAGE)
   @browser.text.include? "Current Job Offers"
 end
 
@@ -21,19 +21,19 @@ When(/^confirm the new offer$/) do
 end
 
 Then(/^I should see "(.*?)" in My Offers$/) do |offer_title|
-  @browser.goto("http://127.0.0.1:3000/job_offers/my")
-  @browser.text.include?(offer_title).should == true
+  @browser.goto(MY_JOB_OFFERS_PAGE)
+  expect(@browser.text.include? offer_title).to eq true
 end
 
 
 Then(/^I should not see "(.*?)" in My Offers$/) do |offer_title|
-  @browser.goto("http://127.0.0.1:3000/job_offers/my")
+  @browser.goto(MY_JOB_OFFERS_PAGE)
   not @browser.text.include? offer_title
 end
 
 Given(/^I have "(.*?)" offer in My Offers$/) do |offer_title|
   step 'there is no job offers at all'
-  @browser.goto("http://127.0.0.1:3000/job_offers/new")
+  @browser.goto(JOB_OFFER_CREATE_PAGE)
   @browser.text_field(id: "job_offer_title").set offer_title
   @browser.button(value: "Create").click
 end

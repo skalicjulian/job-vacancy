@@ -1,8 +1,11 @@
 require File.expand_path(File.dirname(__FILE__) + "/../../config/boot")
 
+require_relative 'urls_constant.rb'
+
 require 'rspec/expectations'
 require 'watir-webdriver'
 require 'headless'
+
 
 require 'simplecov'
 SimpleCov.start do
@@ -36,3 +39,4 @@ end
 at_exit do
   headless.destroy
 end
+
