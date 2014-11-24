@@ -1,6 +1,7 @@
-<h1>Registration</h1>
-<% form_for(@user, '/users/create') do |f| %> 
-	
+<h1>Offerer Registration</h1>
+
+<% form_for(@user, '/users/create_offerer') do |f| %> 
+
 	<%= f.label :name %>
 	<%= f.text_field :name %>
 	<%= f.label :email %>

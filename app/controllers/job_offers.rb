@@ -62,7 +62,7 @@ JobVacancy::App.controllers :job_offers do
   end
 
   post :apply, :with => :offer_id do
-    @job_offer = JobOffer.get(params[:offer_id])    
+    @job_offer = JobOffer.get(params[:offer_id])
     applicant_email = params[:job_application][:applicant_email]
     @job_application = JobApplication.create_for(applicant_email, @job_offer)
     @job_application.process

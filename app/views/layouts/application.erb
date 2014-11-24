@@ -24,12 +24,22 @@
             <div class="container">
               <ul class="nav">
                 <li><%= link_to 'Home', url_for(:home, :index) %></li>
-                <li><%= link_to 'Job offers', url_for(:job_offers, :latest) %></li>
-                
+
                 <% if signed_in? %>	
-                  <li><%= link_to 'New Offer', url_for(:job_offers, :new) %></li>
-                  <li><%= link_to 'My Offers', url_for(:job_offers, :my) %></li>
-                  <li><%= link_to 'My Applications', url_for(:job_offers, :applications) %></li>
+
+                    <li><%= link_to 'My Profile', url_for() %></li>
+
+                  <% if current_user.is_offerer? %> 
+                    <li><%= link_to 'New Offer', url_for(:job_offers, :new) %></li>
+                    <li><%= link_to 'My Offers', url_for(:job_offers, :my) %></li>
+                    <li><%= link_to 'My Applicants', url_for() %></li>
+                  <% end %>
+
+                  <% if current_user.is_applicant? %>
+                    <li><%= link_to 'Job offers', url_for(:job_offers, :latest) %></li>
+                    <li><%= link_to 'My Applications', url_for(:job_offers, :applications) %></li>
+                  <% end %>
+
 								<% end %>
 
 								<% if signed_in? %>	

@@ -8,8 +8,8 @@ class JobApplication
 
 	def self.create_for(offer, user)
 		app = JobApplication.new
-		app.job_offer= offer
-		app.user= user
+		app.job_offer = offer
+		app.user = user
 		app
 	end
 

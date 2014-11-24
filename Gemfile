@@ -15,6 +15,7 @@ gem 'thin' # or mongrel
 gem 'rake'
 
 # Component requirements
+gem 'data_mapper'
 gem 'slim'
 gem 'erubis', '~> 2.7.0'
 gem 'dm-validations'
@@ -51,6 +52,7 @@ group :development, :test do
   gem 'rspec_junit_formatter'
   gem 'rspec'
   gem 'simplecov', "0.8.0.pre"
+  gem 'travis-yaml'
   gem 'rack-test', :require => 'rack/test'
   gem 'rubocop',  :github => 'bbatsov/rubocop'
 end

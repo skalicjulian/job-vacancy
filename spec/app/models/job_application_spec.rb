@@ -35,7 +35,6 @@ describe JobApplication do
 	  	allow(@job_offer).to receive(:title).and_return("Programmer")
 	  	allow(@job_offer).to receive(:description).and_return("Good job!")
 	  	allow(@job_offer).to receive(:location).and_return("Buenos Aires")
-	  	
 	end
 
 	describe 'title' do
